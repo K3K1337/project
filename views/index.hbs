@@ -5,40 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Health Management</title>
 
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="/stylesheets/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<body>
+{{!-- 导航栏部分 --}}
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: var(--primary-gradient); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <i class="fas fa-heartbeat me-2"></i>
-            Health Manager
+        <a class="navbar-brand fw-bold" href="#" style="font-size: 1.5rem;">
+            <i class="fas fa-heartbeat me-2 animate-pulse"></i>
+            Health Manager Pro
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/input">Records</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
-
+{{!-- 主要内容区 --}}
 <div class="container mt-5">
-    <h1 class="mb-4">
-        <i class="fas fa-home me-2"></i>
-        Welcome to Health Manager
-    </h1>
-    <div class="card">
-        <div class="card-body">
-            <p class="card-text">
-                Track your health data easily!
-                <i class="fas fa-smile-beam text-success"></i>
-            </p>
-            <a href="/input" class="btn btn-primary">
-                <i class="fas fa-plus-circle me-2"></i>
-                Add New Record
-            </a>
+    <div class="hero-section text-center py-5 mb-5 rounded-4" style="background: var(--primary-gradient);">
+        <h1 class="display-4 text-white mb-4">
+            <i class="fas fa-laptop-medical me-3"></i>
+            Smart Health Tracking
+        </h1>
+        <p class="lead text-light opacity-90 mb-4">Your personalized health companion for modern life</p>
+    </div>
+
+    {{!-- 功能卡片部分 --}}
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="feature-card h-100 p-4 rounded-3 shadow-sm hover-shadow">
+                <i class="fas fa-weight-scale fs-1 text-primary mb-3"></i>
+                <h3>Comprehensive Tracking</h3>
+                <p>Monitor 10+ health metrics with intuitive interface</p>
+            </div>
         </div>
+        <div class="col-md-4">
+            <div class="feature-card h-100 p-4 rounded-3 shadow-sm hover-shadow">
+                <i class="fas fa-chart-bar fs-1 text-primary mb-3"></i>
+                <h3>card 2</h3>
+                <p>test</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card h-100 p-4 rounded-3 shadow-sm hover-shadow">
+                <i class="fas fa-chart-bar fs-1 text-primary mb-3"></i>
+                <h3>card 3</h3>
+                <p>test</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    {{!-- CTA按钮部分 --}}
+    <div class="cta-section text-center mt-5 py-5">
+        <h2 class="mb-4">Start Your Health Journey Today</h2>
+        <a href="/input" class="btn btn-lg btn-primary px-5 py-3 rounded-pill shadow">
+            <i class="fas fa-rocket me-2"></i>
+            Get Started Now
+        </a>
     </div>
 </div>
 

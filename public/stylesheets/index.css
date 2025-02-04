@@ -1,0 +1,33 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-color: #f8f9fa;
+    --font-heading: 'Segoe UI', system-ui;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui;
+    background: var(--secondary-color);
+}
+
+.feature-card {
+    transition: all 0.3s ease;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1)!important;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.rounded-4 { border-radius: 1rem; }
