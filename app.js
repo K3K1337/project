@@ -1,13 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/', authRouter); // 处理/login路由
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,4 +40,35 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+const session = require('express-session');
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
+
+//登录验证
+app.get('/login', (req, res) => {
+  res.render('login', { error: null });
+});
+
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  if(username === 'admin' && password === 'password') {
+    req.session.user = username;
+    return res.redirect('/input');
+  }
+  res.render('login', { error: 'Invalid credentials' });
+});
+
+const requireLogin = (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect('/login');
+  }
+  next();
+};
+
+app.get('/input', requireLogin, (req, res) => {
+  res.render('input');
+});
 module.exports = app;
