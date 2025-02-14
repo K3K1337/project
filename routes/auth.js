@@ -9,7 +9,7 @@ router.post('/login', (req, res) => {
     const { username, password } = req.body;
     if(username === 'admin' && password === 'password') {
         req.session.user = username;
-        return res.redirect('/input');
+        return res.redirect('/home');
     }
     res.render('login', { error: 'Invalid credentials' });
 });

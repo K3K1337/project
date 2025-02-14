@@ -1,0 +1,141 @@
+<!-- views/home.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Health Manager Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-hover-shadow: 0 10px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .navbar {
+            background: var(--primary-gradient);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-section {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .dashboard-section {
+            padding: 2rem 0;
+        }
+
+        .btn-custom {
+            background: var(--primary-gradient);
+            color: white !important;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-heartbeat me-2"></i>Health Pro</a>
+        <div class="d-flex">
+            <span class="navbar-text me-3">Welcome, {{user}}</span>
+            <a href="/logout" class="btn btn-outline-light"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="welcome-section">
+        <h1 class="display-4 mb-3">Your Health Dashboard</h1>
+        <p class="lead text-muted">Track, Analyze, and Improve Your Wellbeing</p>
+    </div>
+
+    <div class="dashboard-section">
+        <div class="row g-4">
+            <!-- Data Upload Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card h-100 p-4 text-center">
+                    <div class="card-icon mb-3">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3 class="h5 mb-3">Data Upload</h3>
+                    <p class="text-muted small">Record your latest health metrics including weight, blood pressure, and activity data</p>
+                    <a href="/upload" class="btn btn-custom mt-3">
+                        <i class="fas fa-arrow-right me-2"></i>Go to Upload
+                    </a>
+                </div>
+            </div>
+
+            <!-- Analytics Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card h-100 p-4 text-center">
+                    <div class="card-icon mb-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="h5 mb-3">Health Analytics</h3>
+                    <p class="text-muted small">Get detailed insights and trends from your historical health data</p>
+                    <a href="/analytics" class="btn btn-custom mt-3">
+                        <i class="fas fa-arrow-right me-2"></i>View Analysis
+                    </a>
+                </div>
+            </div>
+
+            <!-- Progress Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card h-100 p-4 text-center">
+                    <div class="card-icon mb-3">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
+                    <h3 class="h5 mb-3">Progress Tracking</h3>
+                    <p class="text-muted small">Visualize your health journey with interactive charts and timelines</p>
+                    <a href="/progress" class="btn btn-custom mt-3">
+                        <i class="fas fa-arrow-right me-2"></i>Track Progress
+                    </a>
+                </div>
+            </div>
+
+            <!-- AI Advisor Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card h-100 p-4 text-center">
+                    <div class="card-icon mb-3">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="h5 mb-3">AI Advisor</h3>
+                    <p class="text-muted small">Get personalized recommendations based on your health profile</p>
+                    <a href="/ai-advice" class="btn btn-custom mt-3">
+                        <i class="fas fa-arrow-right me-2"></i>Get Advice
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
