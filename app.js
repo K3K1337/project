@@ -5,9 +5,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+const profileRouter = require('./routes/profile');
 
 const app = express();
 
@@ -34,6 +36,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/', authRouter);
+app.use('/', profileRouter);
 
 // 登录验证
 app.get('/login', (req, res) => {
@@ -42,11 +45,32 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  if (username === 'admin' && password === 'password') {
-    req.session.user = username;
-    return res.redirect('/home');
-  }
-  res.render('login', { error: 'Invalid credentials' });
+
+  db.get(
+      'SELECT * FROM users WHERE username = ? AND password = ?',
+      [username, password],
+      (err, row) => {
+        if (err || !row) {
+          return res.render('login', {
+            error: 'Invalid credentials',
+            username: req.body.username
+          });
+        }
+
+        req.session.user = {
+          id: row.id,
+          username: row.username,
+          data: {
+            height: row.height,
+            weight: row.weight,
+            gender: row.gender,
+            age: row.age
+          }
+        };
+
+        res.redirect('/home');
+      }
+  );
 });
 
 // 登录验证中间件
@@ -59,7 +83,8 @@ const requireLogin = (req, res, next) => {
 
 // Home页面路由
 app.get('/home', requireLogin, (req, res) => {
-  res.render('home', { user: req.session.user });
+  const userData = req.session.userData;
+  res.render('home', { user: req.session.user, userData });
 });
 
 // 登出路由

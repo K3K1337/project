@@ -55,6 +55,68 @@
             transition: transform 0.2s ease;
         }
 
+        .user-info-sidebar {
+
+            position: absolute;
+            left: 1.5rem;
+            top: 6rem;
+            width: 220px;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-radius: 1rem;
+            padding: 1.2rem;
+        }
+        .user-info-sidebar.frosted {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: none;
+        }
+        .user-info-compact {
+            margin: 0;
+            padding: 0;
+        }
+
+        .compact-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .compact-data {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .compact-item {
+            text-align: center;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 0.5rem;
+        }
+
+        .compact-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+
+        .compact-value {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 992px) {
+            .user-info-sidebar {
+                position: static;
+                width: 100%;
+                margin: 1rem 0;
+            }
+        }
         .btn-custom:hover {
             transform: scale(1.05);
         }
@@ -72,6 +134,30 @@
 </nav>
 
 <div class="container">
+    <div class="user-info-sidebar">
+        <div class="user-info-compact">
+            <h3 class="compact-title">Your Profile</h3>
+            <div class="compact-data">
+                <div class="compact-item">
+                    <div class="compact-label">Height</div>
+                    <div class="compact-value">{{userData.height}} cm</div>
+                </div>
+                <div class="compact-item">
+                    <div class="compact-label">Weight</div>
+                    <div class="compact-value">{{userData.weight}} kg</div>
+                </div>
+                <div class="compact-item">
+                    <div class="compact-label">Gender</div>
+                    <div class="compact-value">{{userData.gender}}</div>
+                </div>
+                <div class="compact-item">
+                    <div class="compact-label">Age</div>
+                    <div class="compact-value">{{userData.age}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="welcome-section">
         <h1 class="display-4 mb-3">Your Health Dashboard</h1>
         <p class="lead text-muted">Track, Analyze, and Improve Your Wellbeing</p>
@@ -79,16 +165,16 @@
 
     <div class="dashboard-section">
         <div class="row g-4">
-            <!-- Data Upload Card -->
+            <!-- Profile update Card -->
             <div class="col-md-6 col-lg-3">
                 <div class="feature-card h-100 p-4 text-center">
                     <div class="card-icon mb-3">
                         <i class="fas fa-cloud-upload-alt"></i>
                     </div>
-                    <h3 class="h5 mb-3">Data Upload</h3>
-                    <p class="text-muted small">Record your latest health metrics including weight, blood pressure, and activity data</p>
-                    <a href="/upload" class="btn btn-custom mt-3">
-                        <i class="fas fa-arrow-right me-2"></i>Go to Upload
+                    <h3 class="h5 mb-3">Profile Update</h3>
+                    <p class="text-muted small">Record your latest health metrics including weight and height</p>
+                    <a href="/profile" class="btn btn-custom mt-3">
+                        <i class="fas fa-arrow-right me-2"></i>Go to Update
                     </a>
                 </div>
             </div>

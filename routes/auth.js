@@ -44,6 +44,13 @@ router.post('/login', (req, res) => {
         }
 
         req.session.user = username;
+
+        req.session.userData = {
+            height: row.height,
+            weight: row.weight,
+            gender: row.gender,
+            age: row.age
+        };
         res.redirect('/home');
     });
 });
