@@ -5,11 +5,12 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 
-
+const analysisRouter = require('./routes/analysis');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const profileRouter = require('./routes/profile');
+const chatboxRouter = require('./routes/chatbox');
 
 const app = express();
 
@@ -37,6 +38,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/', authRouter);
 app.use('/', profileRouter);
+app.use('/', analysisRouter);
+app.use('/chatbox', chatboxRouter);
 
 // 登录验证中间件
 const requireLogin = (req, res, next) => {
