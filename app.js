@@ -38,41 +38,6 @@ app.use('/users', usersRouter);
 app.use('/', authRouter);
 app.use('/', profileRouter);
 
-// 登录验证
-app.get('/login', (req, res) => {
-  res.render('login', { error: null });
-});
-
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-
-  db.get(
-      'SELECT * FROM users WHERE username = ? AND password = ?',
-      [username, password],
-      (err, row) => {
-        if (err || !row) {
-          return res.render('login', {
-            error: 'Invalid credentials',
-            username: req.body.username
-          });
-        }
-
-        req.session.user = {
-          id: row.id,
-          username: row.username,
-          data: {
-            height: row.height,
-            weight: row.weight,
-            gender: row.gender,
-            age: row.age
-          }
-        };
-
-        res.redirect('/home');
-      }
-  );
-});
-
 // 登录验证中间件
 const requireLogin = (req, res, next) => {
   if (!req.session.user) {
@@ -83,7 +48,7 @@ const requireLogin = (req, res, next) => {
 
 // Home页面路由
 app.get('/home', requireLogin, (req, res) => {
-  const userData = req.session.userData;
+  const userData = req.session.user ? req.session.user.data : null;
   res.render('home', { user: req.session.user, userData });
 });
 

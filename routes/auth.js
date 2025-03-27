@@ -40,19 +40,27 @@ router.post('/login', (req, res) => {
         }
 
         if (!row) {
-            return res.render('login', { error: 'Invalid credentials' });
+            return res.render('login', { error: 'Invalid credentials', username: req.body.username });
         }
 
-        req.session.user = username;
-
-        req.session.userData = {
-            height: row.height,
-            weight: row.weight,
-            gender: row.gender,
-            age: row.age
+        req.session.user = {
+            id: row.id,
+            username: row.username,
+            data: {
+                height: row.height,
+                weight: row.weight,
+                gender: row.gender,
+                age: row.age
+            }
         };
+
         res.redirect('/home');
     });
+});
+
+// 渲染登录页面
+router.get('/login', (req, res) => {
+    res.render('login', { error: null });
 });
 
 module.exports = router;
