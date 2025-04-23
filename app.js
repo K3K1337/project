@@ -51,8 +51,10 @@ const requireLogin = (req, res, next) => {
 
 // Home页面路由
 app.get('/home', requireLogin, (req, res) => {
+  const healthTips = require('./healthTips');
+  const randomTip = healthTips[Math.floor(Math.random() * healthTips.length)];
   const userData = req.session.user ? req.session.user.data : null;
-  res.render('home', { user: req.session.user, userData });
+  res.render('home', { user: req.session.user, userData , healthTip: randomTip });
 });
 
 // 登出路由
@@ -64,8 +66,6 @@ app.get('/logout', (req, res) => {
     res.redirect('/login');
   });
 });
-
-
 
 app.use(function (req, res, next) {
   next(createError(404));

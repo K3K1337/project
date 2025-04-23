@@ -59,7 +59,8 @@
         .bmi-progress {
             height: 100%;
             background: var(--primary-gradient);
-            width: calc(({{bmi}} -15) * 100% / 25);
+            width: clamp(0%, calc(({{bmi}} - 18.5) * 100% / (30 - 18.5)), 100%);
+            transition: width 0.5s ease;
         }
 
         .chart-container {
@@ -127,14 +128,15 @@
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <small>Underweight</small>
-                            <small>Normal</small>
+                            <small>Healthy</small>
                             <small>Overweight</small>
+                            <small>Obese</small>
                         </div>
                     </div>
                 </div>
                 <div class="alert alert-primary">
                     <i class="fas fa-info-circle me-2"></i>
-                    {{bmi_interpretation}}
+                    <strong>{{bmiStatus}}</strong>
                 </div>
             </div>
 

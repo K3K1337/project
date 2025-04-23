@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database');
 
+
 // 处理分析页面的 GET 请求
 router.get('/analysis', (req, res) => {
     if (!req.session.user) {
@@ -21,8 +22,12 @@ router.get('/analysis', (req, res) => {
         const weight = parseFloat(row.weight);
         const height = parseFloat(row.height) / 100; // 转换为米
         const bmi = (weight / (height * height)).toFixed(2);
+        const bmiStatus =
+            bmi < 18.5 ? "Your BMI indicates underweight. Consider consulting a nutritionist for a balanced diet plan." :
+                bmi < 25   ? "Your BMI is in the healthy range! Maintain your current lifestyle with regular exercise." :
+                    bmi < 30   ? "Your BMI suggests overweight. Try increasing physical activity and reducing sugar intake." :
+                        "Your BMI indicates obesity. Please consult a healthcare provider for a personalized plan.";
 
-        // 计算每日热量代谢（默认正常运动）
         let dailyCalorie;
         if (row.gender === 'male') {
             dailyCalorie = (88.362 + (13.397 * weight) + (4.799 * height * 100) - (5.677 * row.age)) * 1.375;
@@ -31,8 +36,12 @@ router.get('/analysis', (req, res) => {
         }
         dailyCalorie = dailyCalorie.toFixed(2);
 
-        res.render('analysis', { userData: row, bmi, dailyCalorie });
+        res.render('analysis', { userData: row,
+            bmi,
+            dailyCalorie,
+            bmiStatus });
     });
 });
+
 
 module.exports = router;
