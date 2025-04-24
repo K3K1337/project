@@ -130,6 +130,12 @@
             transform: translateX(5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+        .health-warning-card li {
+            line-height: 1.6; /* Better for English text */
+        }
+        .health-warning-card h4 {
+            font-size: 1.25rem; /* Slightly larger headings */
+        }
     </style>
 </head>
 <body>
@@ -226,6 +232,58 @@
                     <a href="/chatbox" class="btn btn-custom mt-3">
                         <i class="fas fa-arrow-right me-2"></i>Get Advice
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="health-info-section">
+            <h2 class="text-center mb-4"><i class="fas fa-exclamation-triangle me-2 text-danger"></i>Health Risk Awareness</h2>
+
+            <div class="row g-4">
+                <!-- Diabetes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="health-warning-card bg-white p-4 rounded-3 shadow-sm border-start border-4 border-danger">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-candy-cane me-3 text-danger" style="font-size: 1.5rem;"></i>
+                            <h4 class="mb-0">Diabetes Risks</h4>
+                        </div>
+                        <ul class="list-unstyled small">
+                            <li class="mb-2"><i class="fas fa-chevron-right me-2 text-muted"></i>May lead to diabetic retinopathy and blindness</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right me-2 text-muted"></i>Increases cardiovascular disease risk</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right me-2 text-muted"></i>Can cause diabetic foot complications</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hypertension -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="health-warning-card bg-white p-4 rounded-3 shadow-sm border-start border-4 border-primary">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-heartbeat me-3 text-primary" style="font-size: 1.5rem;"></i>
+                            <h4 class="mb-0">Hypertension Dangers</h4>
+                        </div>
+                        <ul class="list-unstyled small">
+                            <li class="mb-2"><i class="fas fa-chevron-right me-2 text-muted"></i>5x higher stroke risk</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right me-2 text-muted"></i>Damages heart and kidney functions</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right me-2 text-muted"></i>May lead to aneurysms</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hyperglycemia -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="health-warning-card bg-white p-4 rounded-3 shadow-sm border-start border-4 border-warning">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-vial me-3 text-warning" style="font-size: 1.5rem;"></i>
+                            <h4 class="mb-0">High Blood Sugar Risks</h4>
+                        </div>
+                        <ul class="list-unstyled small">
+                            <li class="mb-2"><i class="fas fa-chevron-right me-2 text-muted"></i>Damages nervous system</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right me-2 text-muted"></i>Increases infection susceptibility</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right me-2 text-muted"></i>Can cause ketoacidosis</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
